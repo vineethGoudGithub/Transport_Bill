@@ -1,0 +1,91 @@
+.bill-history-container {
+  padding-bottom: 2rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.search-panel {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-secondary);
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.search-wrapper input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.table-panel {
+  padding: 1.5rem;
+}
+
+.table-loader {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-icon.view {
+  color: var(--primary-color);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.btn-icon.view:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-icon.delete {
+  color: var(--danger-color);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.btn-icon.delete:hover {
+  background: var(--danger-color);
+  color: white;
+}
