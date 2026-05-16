@@ -85,7 +85,7 @@ const CreateBill = () => {
             <div className="form-grid">
               <div className="input-group">
                 <label>Vehicle Number *</label>
-                <input type="text" name="vehicleNumber" required value={formData.vehicleNumber} onChange={handleInputChange} placeholder="e.g. MH 12 AB 1234" />
+                <input type="text" name="vehicleNumber" required value={formData.vehicleNumber} onChange={handleInputChange} placeholder="e.g. TG 36 G 2035" />
               </div>
               <div className="input-group">
                 <label>Bill Date *</label>
