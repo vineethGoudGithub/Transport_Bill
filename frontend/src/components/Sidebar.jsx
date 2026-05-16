@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FilePlus, History, FileText, LogOut, Sun, Moon } from 'lucide-react';
+import { LayoutDashboard, FilePlus, History, FileText, LogOut, Sun, Moon, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import './Sidebar.css';
