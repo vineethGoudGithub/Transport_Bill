@@ -180,3 +180,47 @@
     background: transparent;
   }
 }
+@media (max-width: 1024px) {
+  .statement-layout {
+    flex-direction: column;
+    height: auto;
+    gap: 1.5rem;
+  }
+
+  .selection-panel {
+    flex: none;
+    width: 100%;
+    max-height: 400px;
+  }
+
+  .preview-panel {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .statement-document {
+    padding: 1rem;
+  }
+
+  .statement-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .summary-row {
+    width: 100%;
+  }
+
+  .preview-actions {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .action-group {
+    flex-direction: column;
+  }
+}

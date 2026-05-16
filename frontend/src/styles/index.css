@@ -112,6 +112,41 @@ a {
 .app-container {
   display: flex;
   min-height: 100vh;
+  position: relative;
+}
+
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  background: var(--surface-color);
+  border: 1px solid var(--surface-border);
+  color: var(--primary-color);
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--glass-shadow);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
 }
 
 .main-content {
@@ -121,9 +156,14 @@ a {
   transition: margin-left 0.3s ease;
 }
 
+.main-content.full-width {
+  margin-left: 0;
+}
+
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
     padding: 1rem;
+    padding-top: 4rem; /* Space for toggle */
   }
 }

@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import './Sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
   const { logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
@@ -13,28 +13,36 @@ const Sidebar = () => {
   const handleLogout = () => {
     logout();
     navigate('/login');
+    if (onClose) onClose();
+  };
+
+  const handleNavClick = () => {
+    if (onClose) onClose();
   };
 
   return (
-    <aside className="sidebar glass-panel">
+    <aside className={`sidebar glass-panel ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-header">
         <h2>TransBilling</h2>
+        <button className="sidebar-close" onClick={onClose}>
+          <X size={24} />
+        </button>
       </div>
       
       <nav className="sidebar-nav">
-        <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} end>
+        <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={handleNavClick} end>
           <LayoutDashboard size={20} />
           <span>Dashboard</span>
         </NavLink>
-        <NavLink to="/create-bill" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+        <NavLink to="/create-bill" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={handleNavClick}>
           <FilePlus size={20} />
           <span>Create Bill</span>
         </NavLink>
-        <NavLink to="/history" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+        <NavLink to="/history" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={handleNavClick}>
           <History size={20} />
           <span>Bill History</span>
         </NavLink>
-        <NavLink to="/statements" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+        <NavLink to="/statements" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={handleNavClick}>
           <FileText size={20} />
           <span>Statements</span>
         </NavLink>

@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // We will create these next
 import Sidebar from './components/Sidebar';
+import { Menu, X } from 'lucide-react';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import CreateBill from './pages/CreateBill';
@@ -27,10 +28,23 @@ const ProtectedRoute = ({ children }) => {
 
 const AppLayout = ({ children }) => {
   const { isAuthenticated } = useAuth();
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const closeSidebar = () => setIsSidebarOpen(false);
+
   return (
-    <div className="app-container">
-      {isAuthenticated && <Sidebar />}
-      <main className={isAuthenticated ? "main-content" : "main-content full-width"} style={{ marginLeft: isAuthenticated ? '250px' : '0', width: '100%'}}>
+    <div className={`app-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      {isAuthenticated && (
+        <>
+          <button className="mobile-toggle" onClick={toggleSidebar}>
+            {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+          {isSidebarOpen && <div className="sidebar-overlay" onClick={closeSidebar}></div>}
+        </>
+      )}
+      <main className={`main-content ${!isAuthenticated ? 'full-width' : ''}`}>
         {children}
       </main>
     </div>

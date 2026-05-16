@@ -158,7 +158,7 @@ const BillPreview = () => {
               </div>
               {bill.advanceAmount > 0 && (
                 <div className="total-row">
-                  <span>Less Advance:</span>
+                  <span>Advance:</span>
                   <span style={{ color: 'var(--danger-color)' }}>-₹{bill.advanceAmount.toFixed(2)}</span>
                 </div>
               )}
