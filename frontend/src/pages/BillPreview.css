@@ -172,39 +172,71 @@
 
 /* Print Styles */
 @media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  
+  body {
+    background: white !important;
+  }
+
   body * {
     visibility: hidden;
   }
+
   .no-print {
     display: none !important;
   }
+
   .invoice-wrapper, .invoice-wrapper * {
     visibility: visible;
   }
+
   .invoice-wrapper {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    background: white;
+    background: white !important;
   }
+
   .invoice {
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    background: white;
-    color: black;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+    color: black !important;
+    width: 100%;
+    max-width: 100%;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
+
+  .invoice-header {
+    border-bottom: 2px solid black;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
   .company-info h1, .invoice-title h2 {
-    color: black;
+    color: black !important;
   }
+
   .invoice-table th {
-    background: #f0f0f0;
-    color: black;
+    background: #f0f0f0 !important;
+    color: black !important;
     -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
+
+  .invoice-summary {
+    margin-bottom: 2rem;
+  }
+
   .grand-total {
-    color: black;
+    color: black !important;
   }
 }
 

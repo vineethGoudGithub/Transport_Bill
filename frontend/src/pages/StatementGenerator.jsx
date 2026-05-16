@@ -12,7 +12,7 @@ const StatementGenerator = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [selectedBillIds, setSelectedBillIds] = useState(new Set());
-  
+  const [activeTab, setActiveTab] = useState('selection'); // 'selection' or 'preview'
   const statementRef = useRef(null);
 
   const fetchBills = async () => {
@@ -105,8 +105,25 @@ const StatementGenerator = () => {
       </div>
 
       <div className="statement-layout">
+        {/* Mobile Tabs */}
+        <div className="mobile-tabs no-print">
+          <button 
+            className={`tab-btn ${activeTab === 'selection' ? 'active' : ''}`}
+            onClick={() => setActiveTab('selection')}
+          >
+            1. Select Trips ({selectedBillIds.size})
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`}
+            onClick={() => setActiveTab('preview')}
+            disabled={selectedBillIds.size === 0}
+          >
+            2. View Statement
+          </button>
+        </div>
+
         {/* LEFT COLUMN: SELECTION */}
-        <div className="selection-panel glass-panel no-print">
+        <div className={`selection-panel glass-panel no-print ${activeTab === 'selection' ? 'show' : 'hide'}`}>
           <h3>Select Trips</h3>
           <div className="search-wrapper statement-search">
             <Search className="search-icon" size={18} />
@@ -164,7 +181,7 @@ const StatementGenerator = () => {
         </div>
 
         {/* RIGHT COLUMN: PREVIEW */}
-        <div className="preview-panel glass-panel">
+        <div className={`preview-panel glass-panel ${activeTab === 'preview' ? 'show' : 'hide'}`}>
           <div className="preview-actions no-print">
             <h3>Statement Preview</h3>
             <div className="action-group">
@@ -197,7 +214,7 @@ const StatementGenerator = () => {
                       <tr key={bill.id}>
                         <td>{new Date(bill.billDate).toLocaleDateString()}</td>
                         <td><strong>{bill.vehicleNumber}</strong></td>
-                        <td className="text-right">{bill.finalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                        <td className="text-right"><strong>₹{bill.finalAmount?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || '0.00'}</strong></td>
                       </tr>
                     ))}
                   </tbody>
@@ -206,7 +223,7 @@ const StatementGenerator = () => {
                 <div className="statement-summary">
                   <div className="summary-row grand-total">
                     <span>Total Amount ({selectedBills.length} trips):</span>
-                    <span>₹{grandTotal.toFixed(2)}</span>
+                    <span>₹{grandTotal?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || '0.00'}</span>
                   </div>
                 </div>
               </>
